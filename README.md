@@ -1,16 +1,25 @@
-# pex_cafe
+# App Don Edu
 
-A new Flutter project.
+O App Don Edu é uma aplicação desenvolvida em Flutter e Dart para facilitar o processo de pedidos em um restaurante. Com este aplicativo, os clientes podem fazer seus pedidos diretamente de suas mesas, eliminando a necessidade de aguardar um garçom para anotar o pedido. 
 
-## Getting Started
+## Funcionalidades
 
-This project is a starting point for a Flutter application.
+- **Seleção de Itens**: Os clientes podem visualizar o menu completo do restaurante e selecionar os itens desejados para adicionar ao pedido.
+- **Personalização de Pedidos**: O aplicativo permite que os clientes personalizem seus pedidos de acordo com suas preferências, como escolha de ingredientes, tamanho das porções, etc.
+- **Envio Direto para o Dashboard**: Assim que um pedido é feito pelo cliente, ele é automaticamente encaminhado para o dashboard do restaurante, permitindo que a equipe de cozinha comece a preparar os pedidos imediatamente.
 
-A few resources to get you started if this is your first Flutter project:
+## Tecnologias Utilizadas
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter**: Utilizado para o desenvolvimento da interface do aplicativo, proporcionando uma experiência de usuário fluida e responsiva.
+- **Dart**: Linguagem de programação utilizada em conjunto com o Flutter para o desenvolvimento do aplicativo.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Como Rodar o Projeto Localmente
+
+Para rodar o projeto localmente, siga os passos abaixo:
+
+1. Clone este repositório em sua máquina local.
+2. Certifique-se de ter o Flutter instalado em sua máquina. Para mais informações, consulte a [documentação oficial do Flutter](https://flutter.dev/docs/get-started/install).
+3. Abra o projeto em seu editor de código preferido.
+4. Execute `flutter pub get` para instalar as dependências do projeto.
+5. Conecte um dispositivo móvel ou inicie um emulador.
+6. Execute `flutter run` para iniciar a aplicação.
