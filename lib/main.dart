@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: selectedTable != null
-          ? LoginPage()
-          : MyHomePage(), // Verifica se uma mesa foi previamente selecionada
+      home: selectedTable != null ? LoginPage() : MyHomePage(),
     );
   }
 }

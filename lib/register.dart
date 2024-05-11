@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Importe o pacote shared_preferences
-import 'clientLogin.dart'; // Importe a classe ClientLoginPage do arquivo clientLogin.dart
+import 'package:shared_preferences/shared_preferences.dart';
+import 'clientLogin.dart';
 
 void main() {
   runApp(MyApp());
@@ -96,7 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _saveSelectedTable(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedTable', selectedTable!);
-    // Após salvar a mesa selecionada, navegue para a página ClientLoginPage
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),

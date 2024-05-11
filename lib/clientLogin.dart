@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pex_cafe/menu.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,16 +19,16 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 
-  Widget buildBody() {
+  Widget buildBody(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         buildHeader(),
-        buildCardContent(),
+        buildCardContent(context),
       ],
     );
   }
@@ -48,7 +49,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildCardContent() {
+  Widget buildCardContent(BuildContext context) {
     return Expanded(
       flex: 2,
       child: Padding(
@@ -82,7 +83,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  buildButton(),
+                  buildButton(context),
                 ],
               ),
             ),
@@ -92,10 +93,13 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget buildButton() {
+  Widget buildButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        // Adicione a funcionalidade desejada aqui
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Menu()),
+        );
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(167, 186, 86, 1),
