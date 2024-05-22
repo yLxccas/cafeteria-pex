@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pex_cafe/menu.dart';
+import 'sidebar.dart';
 
 void main() {
   runApp(MyApp());
@@ -98,7 +98,7 @@ class LoginPage extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => Menu()),
+          MaterialPageRoute(builder: (context) => SidebarWithMenu()),
         );
       },
       style: ElevatedButton.styleFrom(
