@@ -11,10 +11,24 @@ class SidebarWithMenu extends StatefulWidget {
 
 class _SidebarWithMenuState extends State<SidebarWithMenu> {
   String _selectedMenuItem = 'Saladas';
+  Product? _selectedProduct;
 
   void _onMenuItemSelected(String itemName) {
     setState(() {
       _selectedMenuItem = itemName;
+      _selectedProduct = null;
+    });
+  }
+
+  void _onProductSelected(Product product) {
+    setState(() {
+      _selectedProduct = product;
+    });
+  }
+
+  void _onBackButtonPressed() {
+    setState(() {
+      _selectedProduct = null;
     });
   }
 
@@ -33,7 +47,12 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
                     child: MenuItems(onMenuItemSelected: _onMenuItemSelected),
                   ),
                   Expanded(
-                    child: ContentArea(selectedMenuItem: _selectedMenuItem),
+                    child: ContentArea(
+                      selectedMenuItem: _selectedMenuItem,
+                      selectedProduct: _selectedProduct,
+                      onProductSelected: _onProductSelected,
+                      onBackButtonPressed: _onBackButtonPressed,
+                    ),
                   ),
                 ],
               ),
@@ -194,57 +213,267 @@ class MenuItem extends StatelessWidget {
 
 class ContentArea extends StatelessWidget {
   final String selectedMenuItem;
+  final Product? selectedProduct;
+  final Function(Product) onProductSelected;
+  final VoidCallback onBackButtonPressed;
 
-  ContentArea({required this.selectedMenuItem});
+  ContentArea({
+    required this.selectedMenuItem,
+    required this.selectedProduct,
+    required this.onProductSelected,
+    required this.onBackButtonPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (selectedProduct == null) {
+      return Container(
+        color: Colors.transparent,
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Produtos em $selectedMenuItem',
+              style: TextStyle(fontSize: 24, color: Colors.black),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: ListView.builder(
+                itemCount: products[selectedMenuItem]?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final product = products[selectedMenuItem]![index];
+                  return Card(
+                    child: ListTile(
+                      leading: Image.asset(
+                        product.imagePath,
+                        width: 50,
+                        height: 50,
+                        errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                          return Text('Imagem não encontrada');
+                        },
+                      ),
+                      title: Text(product.name),
+                      subtitle: Text(product.description),
+                      onTap: () => onProductSelected(product),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return ProductDetails(
+        product: selectedProduct!,
+        onBackButtonPressed: onBackButtonPressed,
+      );
+    }
+  }
+}
+
+class ProductDetails extends StatefulWidget {
+  final Product product;
+  final VoidCallback onBackButtonPressed;
+
+  ProductDetails({required this.product, required this.onBackButtonPressed});
+
+  @override
+  _ProductDetailsState createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
+  int _quantity = 1;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Conteúdo para $selectedMenuItem',
-              style: TextStyle(fontSize: 24, color: Colors.black),
-            ),
-            SizedBox(height: 20),
-            Image.asset(
-              'assets/images/${_getImageFileName(selectedMenuItem)}',
-              width: 100,
-              height: 100,
-              errorBuilder: (BuildContext context, Object exception,
-                  StackTrace? stackTrace) {
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: widget.onBackButtonPressed,
+          ),
+          Center(
+            child: Image.asset(
+              widget.product.imagePath,
+              width: 200,
+              height: 200,
+              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                 return Text('Imagem não encontrada');
               },
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            widget.product.name,
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          Text(
+            widget.product.description,
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Quantidade:',
+                style: TextStyle(fontSize: 18),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: () {
+                      setState(() {
+                        if (_quantity > 1) _quantity--;
+                      });
+                    },
+                  ),
+                  Text(
+                    _quantity.toString(),
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: () {
+                      setState(() {
+                        _quantity++;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                // Falta adicionar ação para adicionar ao carrinho aqui
+              },
+              child: Text('Adicionar ao Carrinho'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(167, 186, 86, 1),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                textStyle: TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
-
-  String _getImageFileName(String menuItemName) {
-    switch (menuItemName) {
-      case 'Saladas':
-        return 'saladaIcon.png';
-      case 'Omeletes':
-        return 'ovoIcon.png';
-      case 'Sanduiches':
-        return 'sanduicheIcon.png';
-      case 'Tostas':
-        return 'paoIcon.png';
-      case 'Sopas':
-        return 'sopaIcon.png';
-      case 'Cafés':
-        return 'cafeIcon.png';
-      case 'S/Lactose':
-        return 'slacIcon.png';
-      case 'Bebidas':
-        return 'bebidaIcon.png';
-      default:
-        return 'placeholder.png';
-    }
-  }
 }
+
+class Product {
+  final String name;
+  final String description;
+  final String imagePath;
+
+  Product({required this.name, required this.description, required this.imagePath});
+}
+
+final Map<String, List<Product>> products = {
+  'Saladas': [
+    Product(
+      name: 'Salada Caesar',
+      description: 'Salada com alface, parmesão e molho caesar',
+      imagePath: 'assets/images/saladaCaesar.png',
+    ),
+    Product(
+      name: 'Salada Grega',
+      description: 'Salada com pepino, tomate, azeitonas e queijo feta',
+      imagePath: 'assets/images/saladaGrega.png',
+    ),
+  ],
+  'Omeletes': [
+    Product(
+      name: 'Omelete de Queijo',
+      description: 'Omelete com queijo cheddar derretido',
+      imagePath: 'assets/images/omeleteQueijo.png',
+    ),
+    Product(
+      name: 'Omelete de Presunto',
+      description: 'Omelete com presunto e ervas',
+      imagePath: 'assets/images/omeletePresunto.png',
+    ),
+  ],
+  'Sanduiches': [
+    Product(
+      name: 'Sanduíche de Frango',
+      description: 'Sanduíche com frango grelhado e salada',
+      imagePath: 'assets/images/sanduicheFrango.png',
+    ),
+    Product(
+      name: 'Sanduíche Vegano',
+      description: 'Sanduíche com vegetais frescos e hummus',
+      imagePath: 'assets/images/sanduicheVegano.png',
+    ),
+  ],
+  'Tostas': [
+    Product(
+      name: 'Tosta de Queijo',
+      description: 'Tosta com queijo derretido',
+      imagePath: 'assets/images/tostaQueijo.png',
+    ),
+    Product(
+      name: 'Tosta de Presunto',
+      description: 'Tosta com presunto e queijo',
+      imagePath: 'assets/images/tostaPresunto.png',
+    ),
+  ],
+  'Sopas': [
+    Product(
+      name: 'Sopa de Legumes',
+      description: 'Sopa com legumes frescos da estação',
+      imagePath: 'assets/images/sopaLegumes.png',
+    ),
+    Product(
+      name: 'Sopa de Tomate',
+      description: 'Sopa cremosa de tomate',
+      imagePath: 'assets/images/sopaTomate.png',
+    ),
+  ],
+  'Cafés': [
+    Product(
+      name: 'Café Expresso',
+      description: 'Café forte e encorpado',
+      imagePath: 'assets/images/cafeExpresso.png',
+    ),
+    Product(
+      name: 'Cappuccino',
+      description: 'Café com leite vaporizado e espuma',
+      imagePath: 'assets/images/cappuccino.png',
+    ),
+  ],
+  'S/Lactose': [
+    Product(
+      name: 'Smoothie de Frutas',
+      description: 'Smoothie com frutas frescas e sem lactose',
+      imagePath: 'assets/images/smoothieFrutas.png',
+    ),
+    Product(
+      name: 'Leite de Amêndoas',
+      description: 'Leite vegetal feito de amêndoas',
+      imagePath: 'assets/images/leiteAmendoas.png',
+    ),
+  ],
+  'Bebidas': [
+    Product(
+      name: 'Suco de Laranja',
+      description: 'Suco fresco de laranja',
+      imagePath: 'assets/images/sucoLaranja.png',
+    ),
+    Product(
+      name: 'Refrigerante',
+      description: 'Refrigerante gelado',
+      imagePath: 'assets/images/refrigerante.png',
+    ),
+  ],
+};
