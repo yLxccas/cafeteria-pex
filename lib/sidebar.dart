@@ -12,6 +12,7 @@ class SidebarWithMenu extends StatefulWidget {
 class _SidebarWithMenuState extends State<SidebarWithMenu> {
   String _selectedMenuItem = 'Saladas';
   Product? _selectedProduct;
+  final List<CartItem> _cart = [];
 
   void _onMenuItemSelected(String itemName) {
     setState(() {
@@ -32,13 +33,74 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
     });
   }
 
+  void _addToCart(Product product, int quantity, String observation) {
+    setState(() {
+      _cart.add(CartItem(product: product, quantity: quantity, observation: observation));
+      _selectedProduct = null; // Volta para a lista de produtos
+    });
+  }
+
+  void _navigateToCart(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CartScreen(cart: _cart, onCheckout: _checkout, onCartItemPressed: _showCartItemDetails)),
+    );
+  }
+// solicita fechar conta
+  void _checkout() {
+    setState(() {
+      _cart.clear();
+    });
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Solicitar conta'),
+        content: Text('Conta solicitada. Um garçom se dirigirá a sua mesa!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+// detalhes dos itens do carrinho
+  void _showCartItemDetails(CartItem cartItem) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(cartItem.product.name),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Quantidade: ${cartItem.quantity}'),
+            if (cartItem.observation.isNotEmpty) Text('Observação: ${cartItem.observation}'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         body: Column(
           children: <Widget>[
-            HorizontalSidebar(),
+            HorizontalSidebar(onCartPressed: () => _navigateToCart(context)),
             Expanded(
               child: Row(
                 children: <Widget>[
@@ -52,6 +114,7 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
                       selectedProduct: _selectedProduct,
                       onProductSelected: _onProductSelected,
                       onBackButtonPressed: _onBackButtonPressed,
+                      addToCart: _addToCart,
                     ),
                   ),
                 ],
@@ -65,6 +128,10 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
 }
 
 class HorizontalSidebar extends StatelessWidget {
+  final VoidCallback onCartPressed;
+
+  HorizontalSidebar({required this.onCartPressed});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,7 +155,7 @@ class HorizontalSidebar extends StatelessWidget {
               ),
               SizedBox(width: 10),
               IconButton(
-                onPressed: () {},
+                onPressed: onCartPressed,
                 icon: Icon(Icons.shopping_bag, color: Colors.white),
               ),
             ],
@@ -98,7 +165,7 @@ class HorizontalSidebar extends StatelessWidget {
     );
   }
 }
-
+//itens do menu
 class MenuItems extends StatelessWidget {
   final Function(String) onMenuItemSelected;
 
@@ -216,12 +283,14 @@ class ContentArea extends StatelessWidget {
   final Product? selectedProduct;
   final Function(Product) onProductSelected;
   final VoidCallback onBackButtonPressed;
+  final Function(Product, int, String) addToCart;
 
   ContentArea({
     required this.selectedMenuItem,
     required this.selectedProduct,
     required this.onProductSelected,
     required this.onBackButtonPressed,
+    required this.addToCart,
   });
 
   @override
@@ -265,43 +334,62 @@ class ContentArea extends StatelessWidget {
         ),
       );
     } else {
-      return ProductDetails(
+      return ProductDetailsScreen(
         product: selectedProduct!,
         onBackButtonPressed: onBackButtonPressed,
+        addToCart: addToCart,
       );
     }
   }
 }
-
-class ProductDetails extends StatefulWidget {
+//detalhes do produto
+class ProductDetailsScreen extends StatefulWidget {
   final Product product;
   final VoidCallback onBackButtonPressed;
+  final Function(Product, int, String) addToCart;
 
-  ProductDetails({required this.product, required this.onBackButtonPressed});
+  ProductDetailsScreen({required this.product, required this.onBackButtonPressed, required this.addToCart});
 
   @override
-  _ProductDetailsState createState() => _ProductDetailsState();
+  _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
 
-class _ProductDetailsState extends State<ProductDetails> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int _quantity = 1;
+  final TextEditingController _observationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16.0),
+      color: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: widget.onBackButtonPressed,
+          GestureDetector(
+            onTap: widget.onBackButtonPressed,
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.arrow_back),
+                  SizedBox(width: 5),
+                  Text('Voltar'),
+                ],
+              ),
+            ),
           ),
+          SizedBox(height: 20),
           Center(
             child: Image.asset(
               widget.product.imagePath,
-              width: 200,
-              height: 200,
+              width: 300,
+              height: 300,
               errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                 return Text('Imagem não encontrada');
               },
@@ -351,11 +439,19 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ],
           ),
+          SizedBox(height: 10),
+          TextField(
+            controller: _observationController,
+            decoration: InputDecoration(
+              labelText: 'Observação',
+              border: OutlineInputBorder(),
+            ),
+          ),
           SizedBox(height: 20),
           Center(
             child: ElevatedButton(
               onPressed: () {
-                // Falta adicionar ação para adicionar ao carrinho aqui
+                widget.addToCart(widget.product, _quantity, _observationController.text);
               },
               child: Text('Adicionar ao Carrinho'),
               style: ElevatedButton.styleFrom(
@@ -378,7 +474,76 @@ class Product {
 
   Product({required this.name, required this.description, required this.imagePath});
 }
+//item da sacola
+class CartItem {
+  final Product product;
+  final int quantity;
+  final String observation;
 
+  CartItem({required this.product, required this.quantity, required this.observation});
+}
+//tela da sacola
+class CartScreen extends StatelessWidget {
+  final List<CartItem> cart;
+  final VoidCallback onCheckout;
+  final Function(CartItem) onCartItemPressed;
+
+  CartScreen({required this.cart, required this.onCheckout, required this.onCartItemPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Carrinho de Compras'),
+        backgroundColor: Color.fromRGBO(167, 186, 86, 1),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: cart.length,
+              itemBuilder: (context, index) {
+                final item = cart[index];
+                return ListTile(
+                  leading: Image.asset(
+                    item.product.imagePath,
+                    width: 50,
+                    height: 50,
+                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                      return Text('Imagem não encontrada');
+                    },
+                  ),
+                  title: Text(item.product.name),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Quantidade: ${item.quantity}'),
+                      if (item.observation.isNotEmpty) Text('Observação: ${item.observation}'),
+                    ],
+                  ),
+                  onTap: () => onCartItemPressed(item),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: onCheckout,
+              child: Text('Fechar Comanda'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(167, 186, 86, 1),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                textStyle: TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+//mappings
 final Map<String, List<Product>> products = {
   'Saladas': [
     Product(
