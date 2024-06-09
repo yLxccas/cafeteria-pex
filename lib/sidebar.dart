@@ -35,7 +35,8 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
 
   void _addToCart(Product product, int quantity, String observation) {
     setState(() {
-      _cart.add(CartItem(product: product, quantity: quantity, observation: observation));
+      _cart.add(CartItem(
+          product: product, quantity: quantity, observation: observation));
       _selectedProduct = null; // Volta para a lista de produtos
     });
   }
@@ -43,31 +44,80 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
   void _navigateToCart(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => CartScreen(cart: _cart, onCheckout: _checkout, onCartItemPressed: _showCartItemDetails)),
+      MaterialPageRoute(
+          builder: (context) => CartScreen(
+              cart: _cart,
+              onCheckout: _checkout,
+              onCartItemPressed: _showCartItemDetails)),
     );
   }
+
 // solicita fechar conta
   void _checkout() {
-    setState(() {
-      _cart.clear();
-    });
-    Navigator.popUntil(context, ModalRoute.withName('/'));
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Solicitar conta'),
-        content: Text('Conta solicitada. Um garçom se dirigirá a sua mesa!'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
+    if (_cart.isEmpty) {
+      // Mostrar mensagem se o carrinho estiver vazio
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Comanda vazia'),
+          content: Text('Você não adicionou nenhum item na comanda.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      // Mostrar diálogo de confirmação antes de fechar a comanda
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Confirmar fechamento'),
+          content: Text('Você tem certeza que deseja fechar a comanda?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fechar o diálogo de confirmação
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fechar o diálogo de confirmação
+                // Proceder com a solicitação de fechar a comanda se houver itens no carrinho
+                setState(() {
+                  _cart.clear();
+                });
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Solicitar conta'),
+                    content: Text(
+                        'Conta solicitada. Um garçom se dirigirá a sua mesa!'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('OK'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Text('Confirmar'),
+            ),
+          ],
+        ),
+      );
+    }
   }
+
 // detalhes dos itens do carrinho
   void _showCartItemDetails(CartItem cartItem) {
     showDialog(
@@ -79,7 +129,8 @@ class _SidebarWithMenuState extends State<SidebarWithMenu> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Quantidade: ${cartItem.quantity}'),
-            if (cartItem.observation.isNotEmpty) Text('Observação: ${cartItem.observation}'),
+            if (cartItem.observation.isNotEmpty)
+              Text('Observação: ${cartItem.observation}'),
           ],
         ),
         actions: [
@@ -165,6 +216,7 @@ class HorizontalSidebar extends StatelessWidget {
     );
   }
 }
+
 //itens do menu
 class MenuItems extends StatelessWidget {
   final Function(String) onMenuItemSelected;
@@ -318,7 +370,8 @@ class ContentArea extends StatelessWidget {
                         product.imagePath,
                         width: 50,
                         height: 50,
-                        errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
                           return Text('Imagem não encontrada');
                         },
                       ),
@@ -342,13 +395,17 @@ class ContentArea extends StatelessWidget {
     }
   }
 }
+
 //detalhes do produto
 class ProductDetailsScreen extends StatefulWidget {
   final Product product;
   final VoidCallback onBackButtonPressed;
   final Function(Product, int, String) addToCart;
 
-  ProductDetailsScreen({required this.product, required this.onBackButtonPressed, required this.addToCart});
+  ProductDetailsScreen(
+      {required this.product,
+      required this.onBackButtonPressed,
+      required this.addToCart});
 
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
@@ -390,7 +447,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               widget.product.imagePath,
               width: 300,
               height: 300,
-              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
                 return Text('Imagem não encontrada');
               },
             ),
@@ -451,7 +509,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                widget.addToCart(widget.product, _quantity, _observationController.text);
+                widget.addToCart(
+                    widget.product, _quantity, _observationController.text);
               },
               child: Text('Adicionar ao Carrinho'),
               style: ElevatedButton.styleFrom(
@@ -472,23 +531,32 @@ class Product {
   final String description;
   final String imagePath;
 
-  Product({required this.name, required this.description, required this.imagePath});
+  Product(
+      {required this.name, required this.description, required this.imagePath});
 }
+
 //item da sacola
 class CartItem {
   final Product product;
   final int quantity;
   final String observation;
 
-  CartItem({required this.product, required this.quantity, required this.observation});
+  CartItem(
+      {required this.product,
+      required this.quantity,
+      required this.observation});
 }
+
 //tela da sacola
 class CartScreen extends StatelessWidget {
   final List<CartItem> cart;
   final VoidCallback onCheckout;
   final Function(CartItem) onCartItemPressed;
 
-  CartScreen({required this.cart, required this.onCheckout, required this.onCartItemPressed});
+  CartScreen(
+      {required this.cart,
+      required this.onCheckout,
+      required this.onCartItemPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -509,7 +577,8 @@ class CartScreen extends StatelessWidget {
                     item.product.imagePath,
                     width: 50,
                     height: 50,
-                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
                       return Text('Imagem não encontrada');
                     },
                   ),
@@ -518,7 +587,8 @@ class CartScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Quantidade: ${item.quantity}'),
-                      if (item.observation.isNotEmpty) Text('Observação: ${item.observation}'),
+                      if (item.observation.isNotEmpty)
+                        Text('Observação: ${item.observation}'),
                     ],
                   ),
                   onTap: () => onCartItemPressed(item),
@@ -543,6 +613,7 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
+
 //mappings
 final Map<String, List<Product>> products = {
   'Saladas': [

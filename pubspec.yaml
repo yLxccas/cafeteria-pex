@@ -71,6 +71,22 @@ flutter:
     - assets/images/slacIcon.png
     - assets/images/cafeIcon.png
     - assets/images/bebidaIcon.png
+    - assets/images/saladaCaesar.png
+    - assets/images/saladaGrega.png
+    - assets/images/omeleteQueijo.png
+    - assets/images/omeletePresunto.png
+    - assets/images/sanduicheFrango.png
+    - assets/images/sanduicheVegano.png
+    - assets/images/tostaQueijo.png
+    - assets/images/tostaPresunto.png
+    - assets/images/sopaLegumes.png
+    - assets/images/sopaTomate.png
+    - assets/images/cafeExpresso.png
+    - assets/images/cappuccino.png
+    - assets/images/smoothieFrutas.png
+    - assets/images/leiteAmendoas.png
+    - assets/images/sucoLaranja.png
+    - assets/images/refrigerante.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
