@@ -9,6 +9,7 @@ class SidebarWithMenu extends StatefulWidget {
   _SidebarWithMenuState createState() => _SidebarWithMenuState();
 }
 
+
 class _SidebarWithMenuState extends State<SidebarWithMenu> {
   String _selectedMenuItem = 'Saladas';
   Product? _selectedProduct;
@@ -548,16 +549,22 @@ class CartItem {
 }
 
 //tela da sacola
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
   final List<CartItem> cart;
   final VoidCallback onCheckout;
   final Function(CartItem) onCartItemPressed;
 
-  CartScreen(
-      {required this.cart,
-      required this.onCheckout,
-      required this.onCartItemPressed});
+  CartScreen({
+    required this.cart,
+    required this.onCheckout,
+    required this.onCartItemPressed,
+  });
 
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -569,16 +576,15 @@ class CartScreen extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: cart.length,
+              itemCount: widget.cart.length,
               itemBuilder: (context, index) {
-                final item = cart[index];
+                final item = widget.cart[index];
                 return ListTile(
                   leading: Image.asset(
                     item.product.imagePath,
                     width: 50,
                     height: 50,
-                    errorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
+                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                       return Text('Imagem não encontrada');
                     },
                   ),
@@ -591,7 +597,13 @@ class CartScreen extends StatelessWidget {
                         Text('Observação: ${item.observation}'),
                     ],
                   ),
-                  onTap: () => onCartItemPressed(item),
+                  trailing: IconButton(
+                    icon: Icon(Icons.remove_circle),
+                    onPressed: () {
+                      _removeFromCart(item);
+                    },
+                  ),
+                  onTap: () => widget.onCartItemPressed(item),
                 );
               },
             ),
@@ -599,7 +611,7 @@ class CartScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: onCheckout,
+              onPressed: widget.onCheckout,
               child: Text('Fechar Comanda'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(167, 186, 86, 1),
@@ -612,7 +624,26 @@ class CartScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _removeFromCart(CartItem item) {
+    setState(() {
+      // encontra o índice do item no carrinho
+      int index = widget.cart.indexOf(item);
+      if (index != -1) {
+        // remove o item da lista do carrinho
+        widget.cart.removeAt(index);
+        // exibe um SnackBar para informar que o item foi removido com sucesso
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Item removido do carrinho')),
+        );
+      }
+    });
+  }
 }
+
+
+
+
 
 //mappings
 final Map<String, List<Product>> products = {
