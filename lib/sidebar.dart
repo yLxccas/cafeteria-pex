@@ -658,8 +658,28 @@ final Map<String, List<Product>> products = {
       description: 'Salada com pepino, tomate, azeitonas e queijo feta',
       imagePath: 'assets/images/saladaGrega.png',
     ),
+    Product(
+      name: 'Salada Grega',
+      description: 'Salada com pepino, tomate, azeitonas e queijo feta',
+      imagePath: 'assets/images/saladaGrega.png',
+    ),
+    Product(
+      name: 'Salada Grega',
+      description: 'Salada com pepino, tomate, azeitonas e queijo feta',
+      imagePath: 'assets/images/saladaGrega.png',
+    ),
   ],
   'Omeletes': [
+    Product(
+      name: 'Omelete de Queijo',
+      description: 'Omelete com queijo cheddar derretido',
+      imagePath: 'assets/images/omeleteQueijo.png',
+    ),
+    Product(
+      name: 'Omelete de Presunto',
+      description: 'Omelete com presunto e ervas',
+      imagePath: 'assets/images/omeletePresunto.png',
+    ),
     Product(
       name: 'Omelete de Queijo',
       description: 'Omelete com queijo cheddar derretido',
@@ -682,8 +702,28 @@ final Map<String, List<Product>> products = {
       description: 'Sanduíche com vegetais frescos e hummus',
       imagePath: 'assets/images/sanduicheVegano.png',
     ),
+    Product(
+      name: 'Sanduíche de Frango',
+      description: 'Sanduíche com frango grelhado e salada',
+      imagePath: 'assets/images/sanduicheFrango.png',
+    ),
+    Product(
+      name: 'Sanduíche Vegano',
+      description: 'Sanduíche com vegetais frescos e hummus',
+      imagePath: 'assets/images/sanduicheVegano.png',
+    ),
   ],
   'Tostas': [
+    Product(
+      name: 'Tosta de Queijo',
+      description: 'Tosta com queijo derretido',
+      imagePath: 'assets/images/tostaQueijo.png',
+    ),
+    Product(
+      name: 'Tosta de Presunto',
+      description: 'Tosta com presunto e queijo',
+      imagePath: 'assets/images/tostaPresunto.png',
+    ),
     Product(
       name: 'Tosta de Queijo',
       description: 'Tosta com queijo derretido',
@@ -706,8 +746,28 @@ final Map<String, List<Product>> products = {
       description: 'Sopa cremosa de tomate',
       imagePath: 'assets/images/sopaTomate.png',
     ),
+    Product(
+      name: 'Sopa de Legumes',
+      description: 'Sopa com legumes frescos da estação',
+      imagePath: 'assets/images/sopaLegumes.png',
+    ),
+    Product(
+      name: 'Sopa de Tomate',
+      description: 'Sopa cremosa de tomate',
+      imagePath: 'assets/images/sopaTomate.png',
+    ),
   ],
   'Cafés': [
+    Product(
+      name: 'Café Expresso',
+      description: 'Café forte e encorpado',
+      imagePath: 'assets/images/cafeExpresso.png',
+    ),
+    Product(
+      name: 'Cappuccino',
+      description: 'Café com leite vaporizado e espuma',
+      imagePath: 'assets/images/cappuccino.png',
+    ),
     Product(
       name: 'Café Expresso',
       description: 'Café forte e encorpado',
@@ -730,12 +790,32 @@ final Map<String, List<Product>> products = {
       description: 'Leite vegetal feito de amêndoas',
       imagePath: 'assets/images/leiteAmendoas.png',
     ),
+    Product(
+      name: 'Smoothie de Frutas',
+      description: 'Smoothie com frutas frescas e sem lactose',
+      imagePath: 'assets/images/smoothieFrutas.png',
+    ),
+    Product(
+      name: 'Leite de Amêndoas',
+      description: 'Leite vegetal feito de amêndoas',
+      imagePath: 'assets/images/leiteAmendoas.png',
+    ),
   ],
   'Bebidas': [
     Product(
       name: 'Suco de Laranja',
       description: 'Suco fresco de laranja',
       imagePath: 'assets/images/sucoLaranja.png',
+    ),
+    Product(
+      name: 'Refrigerante',
+      description: 'Refrigerante gelado',
+      imagePath: 'assets/images/refrigerante.png',
+    ),
+    Product(
+      name: 'Refrigerante',
+      description: 'Refrigerante gelado',
+      imagePath: 'assets/images/refrigerante.png',
     ),
     Product(
       name: 'Refrigerante',
