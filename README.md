@@ -5,8 +5,7 @@ O App Don Edu é uma aplicação desenvolvida em Flutter e Dart para facilitar o
 ## Funcionalidades
 
 - **Seleção de Itens**: Os clientes podem visualizar o menu completo do restaurante e selecionar os itens desejados para adicionar ao pedido.
-- **Personalização de Pedidos**: O aplicativo permite que os clientes personalizem seus pedidos de acordo com suas preferências, como escolha de ingredientes, tamanho das porções, etc.
-- **Envio Direto para o Dashboard**: Assim que um pedido é feito pelo cliente, ele é automaticamente encaminhado para o dashboard do restaurante, permitindo que a equipe de cozinha comece a preparar os pedidos imediatamente.
+- **Personalização de Pedidos**: O aplicativo permite que os clientes personalizem seus pedidos de acordo com suas preferências, no campo de observação.
 
 ## Tecnologias Utilizadas
 
