@@ -667,7 +667,7 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Grão de Bico',
       description: 'Mix de folhas, azeitonas, grão de bico, tomate, cebola e salsinha. *Sem Leite',
-      imagePath: 'assets/images/saladaGrega.png',
+      imagePath: 'assets/images/saladaGraoBico.png',
     ),
   ],
   'Omeletes': [
@@ -684,32 +684,32 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Rúcula com tomate seco',
       description: 'Preparado com 3 ovos e acompanha mix de folhas. *Sem leite',
-      imagePath: 'assets/images/omeleteQueijo.png',
+      imagePath: 'assets/images/omeleteRuculaTomateSeco.png',
     ),
     Product(
       name: 'Fango, requeijão, tomate cereja e manjericão',
       description: 'Preparado com 3 ovos e acompanha mix de folhas.',
-      imagePath: 'assets/images/omeletePresunto.png',
+      imagePath: 'assets/images/omeleteFrangoReqTomManj.png',
     ),
     Product(
       name: 'Palmito com bacon',
       description: 'Preparado com 3 ovos e acompanha mix de folhas. *Sem leite',
-      imagePath: 'assets/images/omeleteQueijo.png',
+      imagePath: 'assets/images/omeletePalmBacon.png',
     ),
     Product(
       name: 'Carne de panela com cebola caramelizada',
       description: 'Preparado com 3 ovos e acompanha mix de folhas. *Sem leite',
-      imagePath: 'assets/images/omeleteQueijo.png',
+      imagePath: 'assets/images/omeleteCarneCebola.png',
     ),
     Product(
       name: 'Ovos Mexidos',
       description: '3 ovos com sal, pimenta do reino e salsinha',
-      imagePath: 'assets/images/omeleteQueijo.png',
+      imagePath: 'assets/images/ovosMexidos.png',
     ),
     Product(
       name: 'Ovos Mexidos com bacon',
       description: '3 ovos com sal, pimenta do reino e salsinha acmopanhado de bacon e salada',
-      imagePath: 'assets/images/omeleteQueijo.png',
+      imagePath: 'assets/images/ovosMexidosBacon.png',
     ),
   ],
   'Sanduiches': [
@@ -721,57 +721,57 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Rosbife',
       description: 'Sanduíche com rosbife',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduicheRosbife.png',
     ),
     Product(
       name: 'Linguiça Blumenau',
       description: 'Sanduíche com linguiça Blumenau',
-      imagePath: 'assets/images/sanduicheFrango.png',
+      imagePath: 'assets/images/sanduicheLingBlumenau.png',
     ),
     Product(
       name: 'Peito de Peru',
       description: 'Sanduíche com peito de peru',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduichePeitoPeru.png',
     ),
     Product(
       name: 'Carne de panela',
       description: 'Sanduíche com carne de panela',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduicheCarnePanela.png',
     ),
     Product(
       name: 'Cogumelos',
       description: 'Sanduíche com Cogumelos',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduicheCogumelos.png',
     ),
     Product(
       name: 'Bacon',
       description: 'Sanduíche com bacon',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduicheBacon.png',
     ),
     Product(
       name: 'Misto quente',
       description: 'Misto quente tradicional',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/mistoQuente.png',
     ),
     Product(
       name: 'Queijo quente',
       description: 'Queijo quente tradicional',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/queijoQuente.png',
     ),
     Product(
       name: 'Bauru',
       description: 'Misto quente com tomate, orégano e cebola',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/bauru.png',
     ),
     Product(
       name: 'Pão na chapa com manteiga',
       description: '',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/paoManteiga.png',
     ),
     Product(
       name: 'Pão com ovo frito',
       description: '',
-      imagePath: 'assets/images/sanduicheVegano.png',
+      imagePath: 'assets/images/sanduicheOvo.png',
     ),
   ],
   'Tostas': [
@@ -783,22 +783,22 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Queijo brie, lombinho e geleia de laranja',
       description: '',
-      imagePath: 'assets/images/tostaPresunto.png',
+      imagePath: 'assets/images/tostaBrieLomb.png',
     ),
     Product(
       name: 'Carne de panela com confit de tomate cereja. *Sem Leite',
       description: '',
-      imagePath: 'assets/images/tostaQueijo.png',
+      imagePath: 'assets/images/tostaCarneTomate.png',
     ),
     Product(
       name: 'Cogumelos com cebola roxa e ervas frescas. *Sem Leite',
       description: 'Tosta com presunto e queijo',
-      imagePath: 'assets/images/tostaPresunto.png',
+      imagePath: 'assets/images/tostaCogu.png',
     ),
     Product(
       name: 'Pesto de tomate seco, bacon e rúcula. *Sem Leite',
       description: '',
-      imagePath: 'assets/images/tostaPresunto.png',
+      imagePath: 'assets/images/tostaTomRuc.png',
     ),
     Product(
       name: 'Creme de gorgonzola, nozes e mel',
@@ -822,12 +822,12 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Café Expresso',
       description: 'Expresso servido 30ML',
-      imagePath: 'assets/images/cafeExpresso.png',
+      imagePath: 'assets/images/expresso.png',
     ),
     Product(
       name: 'Doppio/Expreso Duplo',
       description: 'Expresso Duplo 60ML',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/doppio.png',
     ),
     Product(
       name: 'Expresso com leite',
@@ -842,62 +842,62 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Latte',
       description: 'Leite vaporizado com dose de expresso (mais leite que café)',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/latte.png',
     ),
     Product(
       name: 'Mocha',
       description: 'Leite vaporizado com dose de expresso, brigadeiro ao fundo',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/mocha.png',
     ),
     Product(
       name: 'Machiatto',
       description: 'Duplo expresso com creme de leite',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/machiatto.png',
     ),
     Product(
       name: 'Coado P',
       description: 'Adicione leite integral ou leite vegetal',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/coado.png',
     ),
     Product(
       name: 'Coado M',
       description: 'Adicione leite integral ou leite vegetal',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/coado.png',
     ),
     Product(
       name: 'Prensa Francesa',
       description: '',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/prensaFrancesa.png',
     ),
     Product(
       name: 'Cleaver',
       description: '',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/cleaver.png',
     ),
     Product(
       name: 'Iced Coffee',
       description: 'Café gelado batido com sorvete e leite',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/icedCoffee.png',
     ),
     Product(
       name: 'Iced Capuccino',
       description: 'Café gelado batido com gelo, leite, cacau e canela',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/icedCapuccino.png',
     ),
     Product(
       name: 'Expresso Churros',
       description: 'Café com borda de doce de leite, fundo de doce de leite e canela',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/cafeChurros.png',
     ),
     Product(
       name: 'Expresso Nutella',
       description: 'Café com borda de nutela, finalizado com cantilly',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/cafeNutella.png',
     ),
     Product(
       name: 'Café Irlandês',
       description: 'Duplo expresso, com Whisky, açúcar Mascavo e cantilly',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/irishCoffee.png',
     ),
     Product(
       name: 'Toffee',
@@ -907,17 +907,17 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Choconhaque',
       description: 'Chocolate quente com dose de conhaque',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/choconhaque.png',
     ),
     Product(
       name: 'Chocolate Quente',
       description: '',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/chocolateQuente.png',
     ),
     Product(
       name: 'Foguete',
       description: 'Coado com raspas de gengibre, raspas de limão, mel e uma dose de whisky',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/foguete.png',
     ),
     Product(
       name: 'Machiato Caramelo',
@@ -932,59 +932,59 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Expresso Kinder',
       description: 'Expresso servido com uma deliciosa casquinha de kinder ovo para derreter e trazer ainda mais doçura ao seu café',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/kinderExpresso.png',
     ),
     Product(
       name: 'Affogato',
       description: 'Bola de sorvete de creme servido com delicioso expresso',
-      imagePath: 'assets/images/cappuccino.png',
+      imagePath: 'assets/images/afogatto.png',
     ),
   ],
   'S/Lactose': [
     Product(
       name: 'Capuccino',
       description: 'Expresso com leite vegetal vaporizado, crema, cacau e canela',
-      imagePath: 'assets/images/smoothieFrutas.png',
+      imagePath: 'assets/images/cappuccino.png',
     ),
     Product(
       name: 'Latte',
       description: 'Leite vegetal vaporizado com dose de expresso (mais leite que café)',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/latte.png',
     ),
     Product(
       name: 'Expresso com leite vegetal',
       description: '',
-      imagePath: 'assets/images/smoothieFrutas.png',
+      imagePath: 'assets/images/latte.png',
     ),
     Product(
       name: 'Mocha',
       description: 'Leite vegetal vaporizado com dose de expresso, brigadeiro sem leite ao fundo',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/mocha.png',
     ),
     Product(
       name: 'Machiatto',
       description: 'Duplo expresso com creme de leite vegetal',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/machiatto.png',
     ),
     Product(
       name: 'Iced Capuccino',
       description: 'Café gelado batido com gelo, leite vegetal, cacau e canela',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/icedCapuccino.png',
     ),
     Product(
       name: 'Choconhaque',
       description: 'Chocolate quente vegetal com dose de conhaque',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/choconhaque.png',
     ),
     Product(
       name: 'Chocolate Quente',
       description: '',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/chocolateQuente.png',
     ),
     Product(
       name: 'Mimosa',
       description: 'Taça com chocolate branco sem leite, crema de leite vegetal e uma dose de expresso',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/mimosa.png',
     ),
     Product(
       name: 'Amendoim',
@@ -994,17 +994,17 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Chocomallow',
       description: 'Taça com delicioso chocolate quente vegetal, finalizado com mashmallow, chantilly e tubetes',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/chocomallow.png',
     ),
     Product(
       name: 'Bala de café',
       description: 'Duplo expresso, servido com gelo, leite vegetal e calda de baunilha',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/expresso.png',
     ),
     Product(
       name: 'Expresso tônica',
       description: 'Água tônica com gelo, expresso e uma rodela de laranja',
-      imagePath: 'assets/images/leiteAmendoas.png',
+      imagePath: 'assets/images/expressoTonica.png',
     ),
   ],
   'Bebidas': [
@@ -1016,7 +1016,7 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Smoothies',
       description: 'Consulte as opções disponíveis',
-      imagePath: 'assets/images/refrigerante.png',
+      imagePath: 'assets/images/smoothieFrutas.png',
     ),
     Product(
       name: 'Shakes',
@@ -1026,12 +1026,12 @@ final Map<String, List<Product>> products = {
     Product(
       name: 'Taça de vinho Cabernet Sauvignon (Seco)',
       description: '',
-      imagePath: 'assets/images/refrigerante.png',
+      imagePath: 'assets/images/vinhoTinto.png',
     ),
     Product(
       name: 'Taça de vinho Branco (Seco)',
       description: '',
-      imagePath: 'assets/images/refrigerante.png',
+      imagePath: 'assets/images/vinhoBranco.png',
     ),
   ],
 };

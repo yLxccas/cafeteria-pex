@@ -87,6 +87,55 @@ flutter:
     - assets/images/leiteAmendoas.png
     - assets/images/sucoLaranja.png
     - assets/images/refrigerante.png
+    - assets/images/saladaFrango.PNG
+    - assets/images/saladaCogumelo.png
+    - assets/images/saladaOvosMex.png
+    - assets/images/saladaGraoBico.png
+    - assets/images/omeleteRuculaTomateSeco.png
+    - assets/images/omeleteFrangoReqTomManj.png
+    - assets/images/ovosMexidos.png
+    - assets/images/omeleteCarneCebola.png
+    - assets/images/omeletePalmBacon.png
+    - assets/images/ovosMexidosBacon.png
+    - assets/images/sanduicheOvo.png
+    - assets/images/paoManteiga.png
+    - assets/images/bauru.png
+    - assets/images/queijoQuente.png
+    - assets/images/mistoQuente.png
+    - assets/images/sanduicheBacon.png
+    - assets/images/sanduicheCogumelos.png
+    - assets/images/sanduicheCarnePanela.png
+    - assets/images/sanduichePeitoPeru.png
+    - assets/images/sanduicheLingBlumenau.png
+    - assets/images/sanduicheRosbife.png
+    - assets/images/tostaBrieLomb.png
+    - assets/images/tostaCogu.png
+    - assets/images/tostaTomRuc.png
+    - assets/images/tostaCarneTomate.png
+    - assets/images/icedCoffee.png
+    - assets/images/icedCapuccino.png
+    - assets/images/expresso.png
+    - assets/images/doppio.png
+    - assets/images/latte.png
+    - assets/images/coado.png
+    - assets/images/mocha.png
+    - assets/images/machiatto.png
+    - assets/images/prensaFrancesa.png
+    - assets/images/cleaver.png
+    - assets/images/cafeChurros.png
+    - assets/images/irishCoffee.png
+    - assets/images/cafeNutella.png
+    - assets/images/foguete.png
+    - assets/images/choconhaque.png
+    - assets/images/chocolateQuente.png
+    - assets/images/afogatto.png
+    - assets/images/mimosa.png
+    - assets/images/chocomallow.png
+    - assets/images/expressoTonica.png
+    - assets/images/vinhoBranco.png
+    - assets/images/vinhoTinto.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
